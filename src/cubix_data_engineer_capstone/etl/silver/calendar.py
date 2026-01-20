@@ -3,16 +3,20 @@ from pyspark.sql import DataFrame
 
 
 def get_calendar(calendar_raw: DataFrame) -> DataFrame:
-    """_summary_
+    """Clean and transform data type for Calendar data.
+
+        1. Select required columns.
+        2. Cast them explicitly.
+        3. Drop duplicates
 
     Args:
-        calendar_raw (DataFrame): _description_
+        calendar_raw (DataFrame): Raw Calendar DataFrame.
 
     Returns:
-        DataFrame: _description_
+        DataFrame: Transformed Calendar DataFrame.
     """
 
-    calendar = (
+    return (
         calendar_raw
         .select(
             sf.col("Date").cast("date"),
@@ -31,4 +35,6 @@ def get_calendar(calendar_raw: DataFrame) -> DataFrame:
             sf.col("DayNumberOfMonth").cast("int"),
             sf.col("MonthID").cast("int"),
         )
+        .dropDuplicates()
     )
+
