@@ -33,7 +33,7 @@ def get_calendar(calendar_raw: DataFrame) -> DataFrame:
             sf.col("FiscalQuarter").cast("int"),
             sf.col("FinMonthNumberOfYear").cast("int"),
             sf.col("DayNumberOfMonth").cast("int"),
-            sf.col("MonthID").cast("int"),
+            sf.col("MonthID").cast("int")
         )
         .dropDuplicates()
     )
