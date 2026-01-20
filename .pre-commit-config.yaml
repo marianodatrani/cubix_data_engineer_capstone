@@ -1,4 +1,4 @@
-files: ^cubix_data_engineer_capstone/
+files: ^src/cubix_data_engineer_capstone/
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
