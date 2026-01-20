@@ -1,1 +1,4 @@
 src/cubix_data_engineer_capstone/test.py
+dist/
+.venv/
+**/__pycache__/
