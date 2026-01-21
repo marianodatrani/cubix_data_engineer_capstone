@@ -17,7 +17,7 @@ def test_get_customers(spark):
             # exclude - duplicate
             ("1", "name_1", "1983-01-26", "M", "F", "50000", "0", "occ_1", "1", "1", "addr_1", "addr_2", "000-000-000", "extra_value"),  # noqa: E501
             # include - MaritalStatus / Gender = None, YearlyIncome = 50001
-            ("2", "name_2", "1983-01-26", None, None, "50001", "0", "occ_2", "1", "1", "addr_3", "addr_3", "000-000-000", "extra_value")  # noqa: E501
+            ("2", "name_2", "1983-01-26", None, None, "50001", "0", "occ_2", "1", "1", "addr_3", "addr_4", "000-000-000", "extra_value")  # noqa: E501
         ],
         schema=[
             "ck",
@@ -76,6 +76,7 @@ def test_get_customers(spark):
                 "addr_1",
                 "addr_2",
                 "000-000-000",
+                "addr_1, addr_2",
                 "Low",
                 1983
             ),
@@ -93,6 +94,7 @@ def test_get_customers(spark):
                 "addr_3",
                 "addr_4",
                 "000-000-000",
+                "addr_3, addr_4",
                 "Medium",
                 1983
             )

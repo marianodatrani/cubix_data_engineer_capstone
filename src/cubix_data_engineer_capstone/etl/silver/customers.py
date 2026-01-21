@@ -12,8 +12,8 @@ CUSTOMERS_MAPPING = {
     "occ": "Occupation",
     "hof": "HouseOwnerFlag",
     "nco": "NumberCarsOwned",
-    "addr1": "Addressline1",
-    "addr2": "Addressline2",
+    "addr1": "AddressLine1",
+    "addr2": "AddressLine2",
     "phone": "Phone"
 }
 
@@ -71,8 +71,8 @@ def get_customers(customers_raw: DataFrame) -> DataFrame:
             .cast("int")
         )
         .withColumn(
-            "FullAdress",
-            sf.concat_ws(", ", sf.col("AdressLine1"), sf.col("AdressLine2"))
+            "FullAddress",
+            sf.concat_ws(", ", sf.col("AddressLine1"), sf.col("AddressLine2"))
         )
         .withColumn(
             "IncomeCategory",
