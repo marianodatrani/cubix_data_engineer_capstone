@@ -2,7 +2,7 @@
 from datetime import datetime
 import pyspark.sql.types as st
 import pyspark.testing as spark_testing
-from cubix_data_engineer_capstone.etl.silver.calendar import get_sales
+from cubix_data_engineer_capstone.etl.silver.sales import get_sales
 
 
 def test_get_sales(spark):
@@ -13,9 +13,9 @@ def test_get_sales(spark):
     test_data = spark.createDataFrame(
         [
             # include - sample to keep
-            ("son_1", "2023-01-01", "1", "1", "1", "2023-01-26", "1", "extra_value"),
+            ("son_1", "2023-01-01", "1", "1", "2023-01-26", "1", "extra_value"),
             # exclude - duplicate
-            ("son_1", "2023-01-01", "1", "1", "1", "2023-01-26", "1", "extra_value")
+            ("son_1", "2023-01-01", "1", "1", "2023-01-26", "1", "extra_value")
         ],
         schema=[
             "son",
@@ -28,7 +28,7 @@ def test_get_sales(spark):
         ]
     )
 
-    result = get_calendar(test_data)
+    result = get_sales(test_data)
 
     expected_schema = st.StructType(
         [
@@ -45,10 +45,10 @@ def test_get_sales(spark):
         [
             (
                 "son_1",
-                datetime(2017, 1, 1),
+                datetime(2023, 1, 1),
                 1,
                 1,
-                datetime(2017, 1, 26),
+                datetime(2023, 1, 26),
                 1,
             )
         ],
