@@ -38,6 +38,7 @@ def test_get_calendar(spark):
     result = get_calendar(test_data)
 
     expected_schema = st.StructType(
+        [
              st.StructField("Date", st.DateType(), True),
              st.StructField("DayNumberOfWeek", st.IntegerType(), True),
              st.StructField("DayName", st.StringType(), True),
@@ -53,6 +54,7 @@ def test_get_calendar(spark):
              st.StructField("FinMonthNumberOfYear", st.IntegerType(), True),
              st.StructField("DayNumberOfMonth", st.IntegerType(), True),
              st.StructField("MonthID", st.IntegerType(), True)
+        ]
     )
 
     expected = spark.createDataFrame(
