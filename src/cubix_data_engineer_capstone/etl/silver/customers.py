@@ -32,7 +32,7 @@ def get_customers(customers_raw: DataFrame) -> DataFrame:
 
 
     Args:
-        sales_raw (DataFrame): Raw Customers data.
+        customers_raw (DataFrame): Raw Customers data.
 
     Returns:
         DataFrame: Cleaned, filtered and transformed Customers data.
