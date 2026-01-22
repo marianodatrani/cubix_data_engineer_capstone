@@ -7,7 +7,7 @@ from cubix_data_engineer_capstone.etl.silver.customers import get_customers
 
 def test_get_customers(spark):
     """
-    Positive test that the function get_sales returns the expected DataFrame.
+    Positive test that the function get_customers returns the expected DataFrame.
     """
 
     test_data = spark.createDataFrame(
