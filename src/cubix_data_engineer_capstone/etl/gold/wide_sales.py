@@ -1,3 +1,4 @@
+import pyspark.sql.functions as sf
 from pyspark.sql import DataFrame
 
 
@@ -42,4 +43,60 @@ def _join_master_tables(
             how="left"
             )
         .drop(product_category_master["ProductCategoryKey"])
+    )
+
+
+def get_wide_sales(
+        sales_master: DataFrame,
+        calendar_master: DataFrame,
+        customers_master: DataFrame,
+        products_master: DataFrame,
+        product_subcategory_master: DataFrame,
+        product_category_master: DataFrame
+) -> DataFrame:
+    """ 1. Join the Master tables.
+    2. Convert the MaritalStatus and Gender to human readable format.
+    2. Calculate SalesAmount, HighValueOrder, Profit.
+
+    Args:
+        sales_master (DataFrame): Master DataFrames for Sales.
+        calendar_master (DataFrame): Master DataFrames for Calendar.
+        customers_master (DataFrame): Master DataFrames for Customers.
+        products_master (DataFrame): Master DataFrames for Products.
+        product_subcategory_master (DataFrame): Master DataFrames for Product Subcategory.
+        product_category_master (DataFrame): Master DataFrames for Product Category.
+
+    Returns:
+        DataFrame: The joined DataFrame with the additional columns.
+    """
+    wide_sales_df = _join_master_tables(
+        sales_master,
+        calendar_master,
+        customers_master,
+        products_master,
+        product_subcategory_master,
+        product_category_master
+    )
+
+    calculate_sales_amount = sf.col("OrderQuantity") * sf.col("ListPrice")
+    calculate_high_value_order = sf.col("SalesAmount") > 10000
+    calculate_profit = sf.col("SalesAmount") - (sf.col("StandardCost") * sf.col("OrderQuantity"))
+
+    return (
+        wide_sales_df
+        .withColumn(
+            "MaritalStatus",
+            sf.when(sf.col("MaritalStatus") == 1, "Married")
+            .when(sf.col("MaritalStatus") == 0, "Single")
+            .otherwise(None)
+        )
+        .withColumn(
+            "Gender",
+            sf.when(sf.col("Gender") == 1, "Male")
+            .when(sf.col("Gender") == 0, "Female")
+            .otherwise(None)
+        )
+        .withColumn("SalesAmount", calculate_sales_amount)
+        .withColumn("HighValueOrder", calculate_high_value_order)
+        .withColumn("Profit", calculate_profit)
     )
