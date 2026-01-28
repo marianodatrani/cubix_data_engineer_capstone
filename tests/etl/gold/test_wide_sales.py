@@ -130,7 +130,7 @@ def test_get_wide_sales(mock_join_master_tables, spark, some_df):
     """
 
     mock_joined_master_dfs_data = [
-        ("SO01", Decimal("10.00"), Decimal("15.00"), 1, 0)
+        ("SO01", 2, Decimal("10.00"), Decimal("15.00"), 1, 0)
     ]
     mock_joined_master_dfs_schema = st.StructType([
         st.StructField("SalesOrderNumber", st.StringType(), True),
@@ -161,8 +161,8 @@ def test_get_wide_sales(mock_join_master_tables, spark, some_df):
         st.StructField("OrderQuantity", st.IntegerType(), True),
         st.StructField("StandardCost", st.DecimalType(10, 2), True),
         st.StructField("ListPrice", st.DecimalType(10, 2), True),
-        st.StructField("MaritalStatus", st.IntegerType(), True),
-        st.StructField("Gender", st.IntegerType(), True),
+        st.StructField("MaritalStatus", st.StringType(), True),
+        st.StructField("Gender", st.StringType(), True),
         st.StructField("SalesAmount", st.DecimalType(10, 2), True),
         st.StructField("HighValueOrder", st.BooleanType(), True),
         st.StructField("Profit", st.DecimalType(10, 2), True)
