@@ -39,7 +39,7 @@ def test_join_master_tables(spark):
         st.StructField("CustomerKey", st.IntegerType(), True),
         st.StructField("Name", st.StringType(), True)
     ])
-    customer_master_test = spark.createDataFrame(customer_master_test_data, schema=customer_schema)
+    customers_master_test = spark.createDataFrame(customer_master_test_data, schema=customer_schema)
 
     product_master_test_data = [
         (3, 4, "Test Product")
@@ -79,7 +79,7 @@ def test_join_master_tables(spark):
     result = _join_master_tables(
         sales_master_test,
         calendar_master_test,
-        customer_master_test,
+        customers_master_test,
         product_master_test,
         product_subcategory_master_test,
         product_category_master_test
@@ -120,4 +120,68 @@ def test_join_master_tables(spark):
     spark_testing.assertDataFrameEqual(result, expected)
 
 
-def test_get_wide_sales():
+@patch("cubix_data_engineer_capstone.etl.gold.wide_sales._join_master_tables")
+def test_get_wide_sales(mock_join_master_tables, spark, some_df):
+    """_summary_
+
+    Args:
+        mock_join_master_tables (_type_): _description_
+        spark (_type_): _description_
+    """
+
+    mock_joined_master_dfs_data = [
+        ("SO01", Decimal("10.00"), Decimal("15.00"), 1, 0)
+    ]
+    mock_joined_master_dfs_schema = st.StructType([
+        st.StructField("SalesOrderNumber", st.StringType(), True),
+        st.StructField("OrderQuantity", st.IntegerType(), True),
+        st.StructField("StandardCost", st.DecimalType(10, 2), True),
+        st.StructField("ListPrice", st.DecimalType(10, 2), True),
+        st.StructField("MaritalStatus", st.IntegerType(), True),
+        st.StructField("Gender", st.IntegerType(), True)
+    ])
+    mock_joined_master_dfs = spark.createDataFrame(
+        mock_joined_master_dfs_data,
+        schema=mock_joined_master_dfs_schema
+    )
+
+    mock_join_master_tables.return_value = mock_joined_master_dfs
+
+    result = get_wide_sales(
+        sales_master=some_df,
+        calendar_master=some_df,
+        customers_master=some_df,
+        products_master=some_df,
+        product_subcategory_master=some_df,
+        product_category_master=some_df
+    )
+
+    expected_schema = st.StructType([
+        st.StructField("SalesOrderNumber", st.StringType(), True),
+        st.StructField("OrderQuantity", st.IntegerType(), True),
+        st.StructField("StandardCost", st.DecimalType(10, 2), True),
+        st.StructField("ListPrice", st.DecimalType(10, 2), True),
+        st.StructField("MaritalStatus", st.IntegerType(), True),
+        st.StructField("Gender", st.IntegerType(), True),
+        st.StructField("SalesAmount", st.DecimalType(10, 2), True),
+        st.StructField("HighValueOrder", st.BooleanType(), True),
+        st.StructField("Profit", st.DecimalType(10, 2), True)
+    ])
+
+    expected_data = [
+        (
+            "SO01",
+            2,
+            Decimal("10.00"),
+            Decimal("15.00"),
+            "Married",
+            "Female",
+            Decimal("30.00"),
+            False,
+            Decimal("10.00")
+        )
+    ]
+
+    expected = spark.createDataFrame(expected_data, expected_schema)
+
+    spark_testing.assertDataFrameEqual(result, expected)
