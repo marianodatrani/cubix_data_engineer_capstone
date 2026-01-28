@@ -122,11 +122,8 @@ def test_join_master_tables(spark):
 
 @patch("cubix_data_engineer_capstone.etl.gold.wide_sales._join_master_tables")
 def test_get_wide_sales(mock_join_master_tables, spark, some_df):
-    """_summary_
-
-    Args:
-        mock_join_master_tables (_type_): _description_
-        spark (_type_): _description_
+    """
+    Positive test that the function test_get_wide_sales returns the expected DataFrame.
     """
 
     mock_joined_master_dfs_data = [
