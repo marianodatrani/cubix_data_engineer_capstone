@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: windows-latest
+    ## Commented out when using Databricks Free Edition
     # env:
     #   DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
     #   DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
@@ -41,7 +42,7 @@ jobs:
       - name: Run unit tests
         run: |
           poetry run pytest tests
-
+      ## Commented out when using Databricks Free Edition
       # - name: Install Databricks CLI
       #   run: |
       #     pip install databricks-cli
