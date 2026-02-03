@@ -1,4 +1,6 @@
 files: ^src/cubix_data_engineer_capstone/
+exclude: wide_sales\.parquet$
+
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
