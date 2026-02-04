@@ -22,7 +22,7 @@ Engineering best practices such as automated formatting and linting are enforced
 
 ## How to Run the Project on Databricks
 
-Unity Catalogs must be created using the Databricks notebook (`databricks_create_the_catalogs.ipynb`) before running the pipeline.\
+Unity Catalogs must be created using the Databricks notebook (`databricks_create_the_catalogs.ipynb`) before running the pipeline.
 
 The project is executed using the Databricks notebook (`databricks_ingestion_pipeline.ipynb`) on Databricks Free Edition.\
 The core ETL logic is installed as a wheel (`.whl`) package, which is imported and executed within the notebook.\
