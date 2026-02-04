@@ -22,7 +22,9 @@ Engineering best practices such as automated formatting and linting are enforced
 
 ## How to Run the Project on Databricks
 
-The project is executed via a Databricks notebook (`databricks_ingestion_pipeline.ipynb`) on Databricks Free Edition.\
+Unity Catalogs must be created using the Databricks notebook (`databricks_create_the_catalogs.ipynb`) before running the pipeline.\
+
+The project is executed using the Databricks notebook (`databricks_ingestion_pipeline.ipynb`) on Databricks Free Edition.\
 The core ETL logic is installed as a wheel (`.whl`) package, which is imported and executed within the notebook.\
 Running the notebook top-to-bottom performs Bronze ingestion, Silver transformations, Gold aggregations, and data quality checks.
 
