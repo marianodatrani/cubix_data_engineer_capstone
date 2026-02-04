@@ -8,7 +8,8 @@ This project implements an end-to-end data engineering ETL pipeline, simulating 
 ## Technologies Used
 
 The project is built using Python and PySpark and runs on Databricks Free Edition.\
-Local development and packaging are handled with Poetry, while testing is implemented using Pytest, and code quality is enforced using pre-commit hooks. Unity Catalog Volumes are used for file-based ingestion and transformed datasets are stored as Delta tables managed through Unity Catalog.
+Local development and packaging are handled with Poetry, while testing is implemented using Pytest, and code quality is enforced using pre-commit hooks.\
+Unity Catalog Volumes are used for file-based ingestion and transformed datasets are stored as Delta tables managed through Unity Catalog.
 
 
 ## Concepts Applied
