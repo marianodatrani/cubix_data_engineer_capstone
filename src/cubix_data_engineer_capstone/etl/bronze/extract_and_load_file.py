@@ -9,11 +9,16 @@ def bronze_ingest_volume(
 ):
     """Extract files from the source, and load them to the bronze volume.
 
-    :param source_path:                 Path to source file.
-    :param bronze_path:                 Path to the bronze layer.
-    :param file_name:                   Name of the file to ingest.
-    :param partition_by:                Column(s) to partition on. "None" by default.
-    """
+    Args:
+        source_path (str): Path to source file.
+        bronze_path (str): Path to the bronze layer.
+        file_name (str): Name of the file to ingest.
+        partition_by (list[str], optional): Column(s) to partition on. Defaults to None.
+
+    Returns:
+        None
+            Writes the DataFrame to the specified UC Volume path.
+    """
     df = read_file_from_volume(f"{source_path}/{file_name}", "csv")
 
     return write_file_to_volume(
