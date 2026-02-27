@@ -40,7 +40,12 @@ def write_file_to_volume(
         partition_by (list[str], optional): List of column to partition by. Defaults to None.
 
     Raises:
-        ValueError: _description_
+        ValueError: If the provided format is not one of the supported
+            formats ("csv", "parquet", or "delta").
+
+    Returns:
+        None
+            Writes the DataFrame to the specified volume path.
     """
     if format not in ["csv", "parquet", "delta"]:
         raise ValueError(f"Invalid format {format}. Supported formats are: csv, parquet, delta.")  # noqa: E501
