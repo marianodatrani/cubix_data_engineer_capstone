@@ -18,8 +18,12 @@ def get_product_subcategory(product_subcategory_raw: DataFrame) -> DataFrame:
     2. Rename columns according to mapping.
     3. Drop duplicates.
 
-    :param product_subcategory_raw:    Raw Product Subcategory data
-    :return:                Cleaned, filtered, and transformed Product Subcategory data.
+
+    Args:
+        product_subcategory_raw (DataFrame): Raw Product Subcategory data.
+
+    Returns:
+        DataFrame:  Cleaned, filtered, and transformed Product Subcategory data.
     """
 
     return (
