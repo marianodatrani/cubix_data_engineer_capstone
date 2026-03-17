@@ -29,8 +29,11 @@ def get_products(products_raw: DataFrame) -> DataFrame:
     4. Replace "NA" values with None.
     5. Drop duplicates.
 
-    :param products_raw:    Raw Products data
-    :return:                Cleaned, filtered, and transformed Products data.
+    Args:
+        products_raw (DataFrame): Raw Products data.
+
+    Returns:
+        DataFrame: Cleaned, filtered, and transformed Products data.
     """
 
     return (
