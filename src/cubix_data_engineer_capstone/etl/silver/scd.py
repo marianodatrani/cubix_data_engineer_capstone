@@ -6,10 +6,11 @@ def scd1_uc(spark: SparkSession, table_name: str, new_data: DataFrame, primary_k
     """Slowly Changing Dimension Type 1 fro UC Volumes.
     Compares the master Delta table with new_data, updating or inserting as needed.
 
-    :param spark:           SparkSession.
-    :param table_name:      Name of the table.
-    :param new_data:        DataFrame with the new data.
-    :param primary_key:     Param name used as priomary key.
+    Args:
+        spark (SparkSession): SparkSession.
+        table_name (str): Name of the table.
+        new_data (DataFrame): DataFrame with the new data.
+        primary_key (str): Param name used as primary key.
     """
     delta_master = DeltaTable.forName(spark, table_name)
 
