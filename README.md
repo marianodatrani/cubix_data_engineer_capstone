@@ -33,7 +33,12 @@ Running the notebook top-to-bottom performs Bronze ingestion, Silver transformat
 ## How to Install Dependencies
 
 Dependencies and package versions are managed locally using Poetry and defined in `pyproject.toml`.\
-Install all dependencies in the virtual environment created by Poetry by running `poetry add`, and build the Databricks package using `poetry build`, which generates a versioned wheel file for deployment.
+Install all dependencies in the virtual environment created by Poetry by running `poetry add` with the name of the package. 
+
+
+## How to Build this Package
+
+Increment package version with `poetry version patch` and build the Databricks package using `poetry build -f wheel`, which generates a versioned wheel file for deployment.
 
 
 ## How to Run Tests
