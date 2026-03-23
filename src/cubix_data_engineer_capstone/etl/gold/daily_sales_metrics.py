@@ -3,8 +3,7 @@ from pyspark.sql import DataFrame
 
 
 def get_daily_sales_metrics(wide_sales: DataFrame) -> DataFrame:
-    """
-    Calculates daily sales metrics from the wide_sales DataFrame.
+    """Calculates daily sales metrics from the wide_sales DataFrame.
 
     Note: In order to get only two decimals for the averages, value is rounded.
 
