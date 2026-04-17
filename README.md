@@ -33,7 +33,8 @@ Running the notebook top-to-bottom performs Bronze ingestion, Silver transformat
 ## How to Install Dependencies
 
 Dependencies and package versions are managed locally using Poetry and defined in `pyproject.toml`.\
-Install all dependencies in the virtual environment created by Poetry by running `poetry add` with the name of the package. 
+Install all dependencies in the virtual environment created by Poetry by running `poetry add` with the name of the package.\
+Java 8 should be installed separately in OS.
 
 
 ## How to Build this Package
