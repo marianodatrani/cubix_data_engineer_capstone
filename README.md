@@ -34,7 +34,8 @@ Running the notebook top-to-bottom performs Bronze ingestion, Silver transformat
 
 Dependencies and package versions are managed locally using Poetry and defined in `pyproject.toml`.\
 Install all dependencies in the virtual environment created by Poetry by running `poetry add` with the name of the package.\
-Java 8 should be installed separately in OS.
+Java 8 should be installed separately in OS.\
+PySpark versions >= 4.0.0 require Java 11/17!
 
 
 ## How to Build this Package
