@@ -33,7 +33,7 @@ Running the notebook top-to-bottom performs Bronze ingestion, Silver transformat
 ## How to Install Dependencies
 
 Dependencies and package versions are managed locally using Poetry and defined in `pyproject.toml`.\
-Install all dependencies in the virtual environment created by Poetry by running `poetry add` with the name of the package.\
+Install all dependencies in the virtual environment created by Poetry by running `poetry add <package-name>`.\
 Java 8 should be installed separately on the operating system.\
 PySpark versions >= 4.0.0 require Java 11/17!
 
